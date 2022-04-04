@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\BMW_API\\BMW_API.csproj": {}
+    "C:\\projects\\Car_API_with_Automapper\\BMW_API.csproj": {}
   },
   "projects": {
-    "C:\\projects\\BMW_API\\BMW_API.csproj": {
+    "C:\\projects\\Car_API_with_Automapper\\BMW_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\BMW_API\\BMW_API.csproj",
+        "projectUniqueName": "C:\\projects\\Car_API_with_Automapper\\BMW_API.csproj",
         "projectName": "BMW_API",
-        "projectPath": "C:\\projects\\BMW_API\\BMW_API.csproj",
+        "projectPath": "C:\\projects\\Car_API_with_Automapper\\BMW_API.csproj",
         "packagesPath": "C:\\Users\\alexe\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\BMW_API\\obj\\",
+        "outputPath": "C:\\projects\\Car_API_with_Automapper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -45,6 +45,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
             "HtmlAgilityPack": {
               "target": "Package",
               "version": "[1.11.42, )"
