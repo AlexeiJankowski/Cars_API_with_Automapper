@@ -25,39 +25,41 @@ namespace BMW_API
         }
 
         [HttpGet("{id}", Name = "GetCarById")]
-        public ActionResult<Car> GetCarById(int id) 
+        public ActionResult<ReadCarDto> GetCarById(int id) 
         {
             var carItem = _repository.GetCarById(id);
             if(carItem == null)
             {
                 return NotFound();
             }
-            return Ok(carItem);
+            return Ok(_mapper.Map<ReadCarDto>(carItem));
         }
 
         [HttpPost]
-        public ActionResult<Car> CreateCar(Car car)
+        public ActionResult<ReadCarDto> CreateCar(CreateCarDto createCarDto)
         {
-            var carItem = _repository.CreateNewCar(car);
-            if(carItem == null)
-            {
-                return NotFound();
-            }
+            var carItem = _mapper.Map<Car>(createCarDto);
+            _repository.CreateNewCar(carItem);
             _repository.SaveChanges();
-            return Ok(carItem);
+
+            var carReadDto = _mapper.Map<ReadCarDto>(carItem);
+
+            return CreatedAtRoute(nameof(GetCarById), new { Id = carReadDto.Id }, carReadDto);
         } 
 
         [HttpPut("{id}")]
-        public ActionResult UpdateCar(int id, Car car)
+        public ActionResult UpdateCar(int id, UpdateCarDto updateCarDto)
         {
             var carItem = _repository.GetCarById(id);
             if(carItem == null)
             {
                 return NotFound();
             }            
-            _repository.UpdateCar(id, car);
+            
+            _mapper.Map(updateCarDto, carItem);
             _repository.SaveChanges();
-            return Ok(carItem);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
