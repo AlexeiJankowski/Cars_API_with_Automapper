@@ -32,6 +32,7 @@ namespace BMW_API
             {
                 options.UseNpgsql(builder.ConnectionString);
             });
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
             services.AddScoped<ICarAPIRepo, SqlCarAPIRepo>();
         }

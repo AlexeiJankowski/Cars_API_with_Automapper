@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BMW_API
@@ -8,16 +9,19 @@ namespace BMW_API
     public class CarsController : ControllerBase
     {
         private readonly ICarAPIRepo _repository;
+        private readonly IMapper _mapper;
         
-        public CarsController(ICarAPIRepo repository)
+        public CarsController(ICarAPIRepo repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Car>> GetAllCars() 
-        {           
-            return Ok( _repository.GetAllCars());
+        public ActionResult<IEnumerable<ReadCarDto>> GetAllCars() 
+        {        
+            var carItems = _repository.GetAllCars();
+            return Ok(_mapper.Map<IEnumerable<ReadCarDto>>(carItems));
         }
 
         [HttpGet("{id}", Name = "GetCarById")]

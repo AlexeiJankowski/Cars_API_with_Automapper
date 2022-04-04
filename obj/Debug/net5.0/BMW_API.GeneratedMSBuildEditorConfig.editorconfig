@@ -7,4 +7,4 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BMW_API
-build_property.ProjectDir = c:\projects\Car_API_with_Automapper\
+build_property.ProjectDir = C:\projects\Car_API_with_Automapper\
