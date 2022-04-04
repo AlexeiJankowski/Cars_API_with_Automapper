@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -40,7 +41,17 @@ namespace BMW_API
                 carItem.Years = newCar.Years;
                 carItem.ModelSeries = newCar.ModelSeries;
             } 
-        }    
+        }   
+
+        public void DeleteCar(int id)
+        {
+            var carItem = _context.Cars.FirstOrDefault(x => x.Id == id);
+            if(carItem == null)
+            {
+                throw new ArgumentNullException(nameof(carItem));
+            }
+            _context.Cars.Remove(carItem);
+        }
 
         public void SaveChanges()
         {

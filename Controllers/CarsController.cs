@@ -55,5 +55,19 @@ namespace BMW_API
             _repository.SaveChanges();
             return Ok(carItem);
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteCar(int id)
+        {
+            var carItem = _repository.GetCarById(id);
+            if(carItem == null)
+            {
+                return NotFound();
+            }
+            _repository.DeleteCar(id);
+            _repository.SaveChanges();
+            
+            return NoContent();
+        }
     }
 }
