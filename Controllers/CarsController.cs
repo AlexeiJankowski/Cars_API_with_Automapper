@@ -66,23 +66,35 @@ namespace BMW_API
         }
 
         [HttpPatch("{id}")]
-        public ActionResult PartiallyUpdaCar(int id, JsonPatchDocument<UpdateCarDto> patchDocument)
+        public ActionResult PartiallyUpdaCar(int id, JsonPatchDocument<UpdateCarDto> patchCar)
         {
             var carItem = _repository.GetCarById(id);
+            
             if(carItem == null)
             {
-                return NotFound();
+                var carDto = new UpdateCarDto();
+                patchCar.ApplyTo(carDto, ModelState);
+
+                var carToAdd = _mapper.Map<Car>(carDto);
+                carToAdd.Id = id;
+
+                _repository.CreateNewCar(carToAdd);
+                _repository.SaveChanges();
+
+                var carToReturn = _mapper.Map<Car>(carToAdd);
+
+                return CreatedAtRoute(nameof(GetCarById), new { Id = carToReturn.Id }, carToReturn);
             }
 
             var carToPatch = _mapper.Map<UpdateCarDto>(carItem);
-            patchDocument.ApplyTo(carToPatch, ModelState);
+            patchCar.ApplyTo(carToPatch, ModelState);
 
             _mapper.Map(carToPatch, carItem);
             
             _repository.UpdateCar(id);
             _repository.SaveChanges();
 
-            return CreatedAtRoute("GetCarById", new { id }, carToPatch);
+            return CreatedAtRoute(nameof(GetCarById), new { id }, carToPatch);
         }
 
         [HttpDelete("{id}")]
