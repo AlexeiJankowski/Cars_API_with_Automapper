@@ -11,7 +11,7 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("7eff8e0c-50f4-46cb-8a8d-0f608c4b8630")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("e29ce0dc-8aa0-4d8b-b89f-b0af432d205f")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("BMW_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

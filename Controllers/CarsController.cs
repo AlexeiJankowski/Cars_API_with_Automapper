@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BMW_API
@@ -13,8 +15,8 @@ namespace BMW_API
         
         public CarsController(ICarAPIRepo repository, IMapper mapper)
         {
-            _repository = repository;
-            _mapper = mapper;
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
@@ -57,9 +59,30 @@ namespace BMW_API
             }            
             
             _mapper.Map(updateCarDto, carItem);
+            _repository.UpdateCar(id);
             _repository.SaveChanges();
 
             return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult PartiallyUpdaCar(int id, JsonPatchDocument<UpdateCarDto> patchDocument)
+        {
+            var carItem = _repository.GetCarById(id);
+            if(carItem == null)
+            {
+                return NotFound();
+            }
+
+            var carToPatch = _mapper.Map<UpdateCarDto>(carItem);
+            patchDocument.ApplyTo(carToPatch, ModelState);
+
+            _mapper.Map(carToPatch, carItem);
+            
+            _repository.UpdateCar(id);
+            _repository.SaveChanges();
+
+            return CreatedAtRoute("GetCarById", new { id }, carToPatch);
         }
 
         [HttpDelete("{id}")]

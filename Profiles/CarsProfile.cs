@@ -9,6 +9,7 @@ namespace BMW_API
             CreateMap<Car, ReadCarDto>();
             CreateMap<CreateCarDto, Car>();
             CreateMap<UpdateCarDto, Car>();
+            CreateMap<Car, UpdateCarDto>();
         }
     }
 }

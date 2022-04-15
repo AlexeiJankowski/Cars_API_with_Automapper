@@ -9,7 +9,7 @@ namespace BMW_API
         public IEnumerable<Car> GetAllCars();
         public Car GetCarById(int id);
         public Car CreateNewCar(Car car);
-        public void UpdateCar(int id, Car car);
+        public void UpdateCar(int id);
         public void DeleteCar(int id);
         public void SaveChanges();
     }

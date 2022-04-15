@@ -32,15 +32,9 @@ namespace BMW_API
             return car;
         }    
 
-        public void UpdateCar(int id, Car newCar)
+        public void UpdateCar(int id)
         {
-            var carItem = _context.Cars.FirstOrDefault(x => x.Id == id);
-            if(carItem != null)
-            {
-                carItem.VehicleClass = newCar.VehicleClass;
-                carItem.Years = newCar.Years;
-                carItem.ModelSeries = newCar.ModelSeries;
-            } 
+            
         }   
 
         public void DeleteCar(int id)

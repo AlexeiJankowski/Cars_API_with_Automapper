@@ -11,7 +11,7 @@ namespace BMW_API
             HtmlWeb web = new HtmlWeb();
             var htmlDoc = web.Load(url);
 
-            return htmlDoc.DocumentNode.SelectNodes("//table[contains(@class, 'wikitable')]//tbody//tr//td");
+            return htmlDoc.DocumentNode.SelectNodes("//table[contains(@class, 'sortable')]//tbody//tr//td");
         }              
     }
 }

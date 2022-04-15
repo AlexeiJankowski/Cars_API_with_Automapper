@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 using Npgsql;
 
 namespace BMW_API
@@ -26,14 +27,18 @@ namespace BMW_API
         {
             var builder = new NpgsqlConnectionStringBuilder();
             builder.ConnectionString = Configuration.GetConnectionString("PostgreSql");
-            builder.Username = Configuration["UserID"];
+            builder.Username = Configuration["UserId"];
             builder.Password = Configuration["Password"];
             services.AddDbContext<AppDbContext>(options => 
             {
                 options.UseNpgsql(builder.ConnectionString);
             });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
             services.AddScoped<ICarAPIRepo, SqlCarAPIRepo>();
         }
 

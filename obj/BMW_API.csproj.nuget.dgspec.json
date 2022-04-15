@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\Car_API_with_Automapper\\BMW_API.csproj": {}
+    "/home/oleksii/Projects/Cars_API_with_Automapper/BMW_API.csproj": {}
   },
   "projects": {
-    "C:\\projects\\Car_API_with_Automapper\\BMW_API.csproj": {
+    "/home/oleksii/Projects/Cars_API_with_Automapper/BMW_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\Car_API_with_Automapper\\BMW_API.csproj",
+        "projectUniqueName": "/home/oleksii/Projects/Cars_API_with_Automapper/BMW_API.csproj",
         "projectName": "BMW_API",
-        "projectPath": "C:\\projects\\Car_API_with_Automapper\\BMW_API.csproj",
-        "packagesPath": "C:\\Users\\alexe\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\Car_API_with_Automapper\\obj\\",
+        "projectPath": "/home/oleksii/Projects/Cars_API_with_Automapper/BMW_API.csproj",
+        "packagesPath": "/home/oleksii/.nuget/packages/",
+        "outputPath": "/home/oleksii/Projects/Cars_API_with_Automapper/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\alexe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/oleksii/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -53,6 +46,14 @@
               "target": "Package",
               "version": "[1.11.42, )"
             },
+            "Microsoft.AspNetCore.JsonPatch": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.2, )"
@@ -78,12 +79,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.14, 5.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -92,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
         }
       }
     }
