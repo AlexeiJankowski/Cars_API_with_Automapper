@@ -24,7 +24,7 @@ namespace BMW_API.Helpers
             this.AddRange(items);
         }
 
-        public static PaginatedList<T> Create(IQueryable<T> source, int pageNumber, int pageSize)
+        public static PaginatedList<T> Create(List<T> source, int pageNumber, int pageSize)
         {
             var count = source.Count();
             var items = source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();

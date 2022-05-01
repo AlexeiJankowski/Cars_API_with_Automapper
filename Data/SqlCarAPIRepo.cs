@@ -20,7 +20,25 @@ namespace BMW_API.Data
 
         public PaginatedList<Car> GetAllCars(CarsParameters carsParameters)
         {
-            return PaginatedList<Car>.Create(_context.Cars.OrderBy(x => x.Id), carsParameters.CurrentPage, carsParameters.PageSize);        
+            var carItems = _context.Cars.ToList();
+
+            switch(carsParameters.OrderBy)
+            {
+                case "modelSeries":
+                    carItems = carItems.OrderBy(x => x.ModelSeries).ToList();
+                    break;
+                case "years":
+                    carItems = carItems.OrderBy(x => x.Years).ToList();
+                    break;
+                case "class":
+                    carItems = carItems.OrderBy(x => x.VehicleClass).ToList();
+                    break;
+                default:
+                    carItems = carItems.OrderBy(x => x.Id).ToList();
+                    break;
+            }
+
+            return PaginatedList<Car>.Create(carItems, carsParameters.CurrentPage, carsParameters.PageSize);        
         }
 
         public Car GetCarById(int id)
