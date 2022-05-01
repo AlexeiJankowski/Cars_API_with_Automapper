@@ -4,6 +4,7 @@ using System.Diagnostics;
 using AutoMapper;
 using BMW_API.Data;
 using BMW_API.Dtos;
+using BMW_API.Parameters;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,9 +24,9 @@ namespace BMW_API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ReadCarDto>> GetAllCars() 
+        public ActionResult<IEnumerable<ReadCarDto>> GetAllCars([FromQuery] CarsParameters carsParameters) 
         {        
-            var carItems = _repository.GetAllCars();
+            var carItems = _repository.GetAllCars(carsParameters);
             return Ok(_mapper.Map<IEnumerable<ReadCarDto>>(carItems));
         }
 

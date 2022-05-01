@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using BMW_API.Helpers;
+using BMW_API.Parameters;
 using HtmlAgilityPack;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -17,9 +18,9 @@ namespace BMW_API.Data
              _context = context;            
         }
 
-        public PaginatedList<Car> GetAllCars()
+        public PaginatedList<Car> GetAllCars(CarsParameters carsParameters)
         {
-            return PaginatedList<Car>.Create(_context.Cars.OrderBy(x => x.Id), 2, 10);        
+            return PaginatedList<Car>.Create(_context.Cars.OrderBy(x => x.Id), carsParameters.CurrentPage, carsParameters.PageSize);        
         }
 
         public Car GetCarById(int id)
