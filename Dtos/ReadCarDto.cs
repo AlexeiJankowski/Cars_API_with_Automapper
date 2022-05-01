@@ -1,4 +1,4 @@
-namespace BMW_API
+namespace BMW_API.Dtos
 {
     public class ReadCarDto
     {

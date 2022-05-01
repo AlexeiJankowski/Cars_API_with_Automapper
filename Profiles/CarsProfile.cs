@@ -1,6 +1,7 @@
 using AutoMapper;
+using BMW_API.Dtos;
 
-namespace BMW_API
+namespace BMW_API.Profiles
 {
     public class CarsProfile : Profile
     {

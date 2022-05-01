@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using AutoMapper;
+using BMW_API.Data;
+using BMW_API.Dtos;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BMW_API
+namespace BMW_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

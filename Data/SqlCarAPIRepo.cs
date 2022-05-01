@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using BMW_API.Helpers;
 using HtmlAgilityPack;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace BMW_API
+namespace BMW_API.Data
 {
     public class SqlCarAPIRepo : ICarAPIRepo
     {
@@ -16,9 +17,9 @@ namespace BMW_API
              _context = context;            
         }
 
-        public IEnumerable<Car> GetAllCars()
+        public PaginatedList<Car> GetAllCars()
         {
-            return _context.Cars.ToList();
+            return PaginatedList<Car>.Create(_context.Cars.OrderBy(x => x.Id), 2, 10);        
         }
 
         public Car GetCarById(int id)

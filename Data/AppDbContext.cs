@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace BMW_API
+namespace BMW_API.Data
 {
     public class AppDbContext : DbContext
     {

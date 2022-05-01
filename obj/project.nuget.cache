@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "86YJ/9XggiDo/iziLrEWMsMoTn5XGTCINBpGRoYzXFHWckH8cvPWSltZKKimaejtmUvwVcKoRLa0Nz6fReQ+9g==",
+  "dgSpecHash": "P7tDkPlZA5TI5YIMUJVHjxDEpDrOmUBjFm6keG7D1a/uuCd5QF2hKgCsFLslTChcOSQyHp1UThmPeyigL2l6WQ==",
   "success": true,
   "projectFilePath": "/home/oleksii/Projects/Cars_API_with_Automapper/BMW_API.csproj",
   "expectedPackageFiles": [

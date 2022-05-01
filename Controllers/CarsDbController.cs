@@ -1,6 +1,7 @@
+using BMW_API.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BMW_API
+namespace BMW_API.Controllers
 {
     [Route("api/seed")]
     [ApiController]
