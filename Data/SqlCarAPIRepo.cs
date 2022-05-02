@@ -38,6 +38,23 @@ namespace BMW_API.Data
                     break;
             }
 
+            if(!String.IsNullOrEmpty(carsParameters.SearchQuery))
+            {
+                var carItemsToReturn = new List<Car>();
+                foreach(var carItem in carItems)
+                {
+                    foreach(var item in (carItem.GetType().GetProperties()))
+                    {
+                        if(item.Name == "Id") continue;
+                        if(Convert.ToString(item.GetValue(carItem)).ToLower().Contains(carsParameters.SearchQuery.ToLower()))
+                        {
+                            carItemsToReturn.Add(carItem);
+                        }
+                    }
+                }
+                carItems = carItemsToReturn;
+            }
+
             return PaginatedList<Car>.Create(carItems, carsParameters.CurrentPage, carsParameters.PageSize);        
         }
 

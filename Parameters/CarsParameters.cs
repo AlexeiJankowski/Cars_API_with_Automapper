@@ -20,5 +20,8 @@ namespace BMW_API.Parameters
 
         // OrderBy
         public string OrderBy { get; set; } = "Name";
+
+        // Search
+        public string SearchQuery { get; set; }
     }
 }
