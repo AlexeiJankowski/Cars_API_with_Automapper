@@ -33,6 +33,15 @@ namespace BMW_API.Data
                 case "class":
                     carItems = carItems.OrderBy(x => x.VehicleClass).ToList();
                     break;
+                case "modelSeriesDesc":
+                    carItems = carItems.OrderByDescending(x => x.ModelSeries).ToList();
+                    break;
+                case "yearsDesc":
+                    carItems = carItems.OrderByDescending(x => x.Years).ToList();
+                    break;
+                case "classDesc":
+                    carItems = carItems.OrderByDescending(x => x.VehicleClass).ToList();
+                    break;
                 default:
                     carItems = carItems.OrderBy(x => x.Id).ToList();
                     break;
@@ -101,7 +110,7 @@ namespace BMW_API.Data
                     {
                         ModelSeries = carList[i].InnerText,
                         Years = carList[i + 1].InnerText,
-                        VehicleClass = carList[i + 2].InnerText
+                        VehicleClass = carList[i + 2].InnerText.TrimEnd('\n')
                     });
                 }  
             }                      
