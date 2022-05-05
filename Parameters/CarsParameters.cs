@@ -16,7 +16,12 @@ namespace BMW_API.Parameters
             get => pageSize;
             set => pageSize = ((value > maxPageSize) || (value <= 0)) ? value = standardPageSize : value;
         }
-        public int CurrentPage { get; set; } = 1;
+        private int currentPage;
+        public int CurrentPage 
+        { 
+            get => currentPage; 
+            set => currentPage = value >= 1 ? value : 1; 
+        }
 
         // OrderBy
         public string OrderBy { get; set; }

@@ -66,10 +66,17 @@ namespace BMW_API.Data
             
             if(carsParameters.PageSize == 0)
             {
-                return PaginatedList<Car>.Create(carItems, carsParameters.CurrentPage, 10);  
+                carsParameters.PageSize = 10;                
             }
 
-            return PaginatedList<Car>.Create(carItems, carsParameters.CurrentPage, carsParameters.PageSize);        
+            var result = PaginatedList<Car>.Create(carItems, carsParameters.CurrentPage, carsParameters.PageSize);
+
+            if(result.Count <= 0)
+            {
+                return null;
+            }
+
+            return result;
         }
 
         public Car GetCarById(int id)
