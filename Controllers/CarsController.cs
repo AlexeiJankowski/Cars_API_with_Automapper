@@ -52,8 +52,6 @@ namespace BMW_API.Controllers
         [HttpPost]
         public ActionResult<ReadCarDto> CreateCar(CreateCarDto createCarDto)
         {
-            try
-            {
                 var carItem = _mapper.Map<Car>(createCarDto);
                 _repository.CreateNewCar(carItem);
                 _repository.SaveChanges();
@@ -61,12 +59,6 @@ namespace BMW_API.Controllers
                 var carReadDto = _mapper.Map<ReadCarDto>(carItem);
 
                 return CreatedAtRoute(nameof(GetCarById), new { Id = carReadDto.Id }, carReadDto);
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            
         } 
 
         [HttpPut("{id}")]
@@ -120,22 +112,17 @@ namespace BMW_API.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteCar(int id)
         { 
-            try
+            var carItem = _repository.GetCarById(id);
+
+            if(carItem == null)
             {
-                var carItem = _repository.GetCarById(id);
-                if(carItem == null)
-                {
-                    return NotFound();
-                }
-                _repository.DeleteCar(id);
-                _repository.SaveChanges();
-                
-                return NoContent();
+                return NotFound();
             }
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            
+            _repository.DeleteCar(id);
+            _repository.SaveChanges();
+            
+            return NoContent();           
         }
     }
 }
