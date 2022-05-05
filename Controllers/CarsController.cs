@@ -27,6 +27,12 @@ namespace BMW_API.Controllers
         public ActionResult<IEnumerable<ReadCarDto>> GetAllCars([FromQuery] CarsParameters carsParameters) 
         {        
             var carItems = _repository.GetAllCars(carsParameters);
+
+            if(carItems == null)
+            {
+                return NotFound();
+            }
+
             return Ok(_mapper.Map<IEnumerable<ReadCarDto>>(carItems));
         }
 
@@ -34,23 +40,33 @@ namespace BMW_API.Controllers
         public ActionResult<ReadCarDto> GetCarById(int id) 
         {
             var carItem = _repository.GetCarById(id);
+
             if(carItem == null)
             {
                 return NotFound();
             }
+
             return Ok(_mapper.Map<ReadCarDto>(carItem));
         }
 
         [HttpPost]
         public ActionResult<ReadCarDto> CreateCar(CreateCarDto createCarDto)
         {
-            var carItem = _mapper.Map<Car>(createCarDto);
-            _repository.CreateNewCar(carItem);
-            _repository.SaveChanges();
+            try
+            {
+                var carItem = _mapper.Map<Car>(createCarDto);
+                _repository.CreateNewCar(carItem);
+                _repository.SaveChanges();
 
-            var carReadDto = _mapper.Map<ReadCarDto>(carItem);
+                var carReadDto = _mapper.Map<ReadCarDto>(carItem);
 
-            return CreatedAtRoute(nameof(GetCarById), new { Id = carReadDto.Id }, carReadDto);
+                return CreatedAtRoute(nameof(GetCarById), new { Id = carReadDto.Id }, carReadDto);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
         } 
 
         [HttpPut("{id}")]
@@ -103,16 +119,23 @@ namespace BMW_API.Controllers
 
         [HttpDelete("{id}")]
         public ActionResult DeleteCar(int id)
-        {
-            var carItem = _repository.GetCarById(id);
-            if(carItem == null)
+        { 
+            try
             {
-                return NotFound();
+                var carItem = _repository.GetCarById(id);
+                if(carItem == null)
+                {
+                    return NotFound();
+                }
+                _repository.DeleteCar(id);
+                _repository.SaveChanges();
+                
+                return NoContent();
             }
-            _repository.DeleteCar(id);
-            _repository.SaveChanges();
-            
-            return NoContent();
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

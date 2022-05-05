@@ -63,6 +63,11 @@ namespace BMW_API.Data
                 }
                 carItems = carItemsToReturn;
             }
+            
+            if(carsParameters.PageSize == 0)
+            {
+                return PaginatedList<Car>.Create(carItems, carsParameters.CurrentPage, 10);  
+            }
 
             return PaginatedList<Car>.Create(carItems, carsParameters.CurrentPage, carsParameters.PageSize);        
         }
