@@ -19,7 +19,7 @@ namespace BMW_API.Parameters
         public int CurrentPage { get; set; } = 1;
 
         // OrderBy
-        public string OrderBy { get; set; } = "Name";
+        public string OrderBy { get; set; }
 
         // Search
         public string SearchQuery { get; set; }
