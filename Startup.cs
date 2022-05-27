@@ -50,6 +50,7 @@ namespace BMW_API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.ConfigureExceptionHandler();
 
             app.UseRouting();
 

@@ -5,27 +5,32 @@ using AutoMapper;
 using BMW_API.Data;
 using BMW_API.Dtos;
 using BMW_API.Parameters;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace BMW_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class CarsController : ControllerBase
-    {
+    {        
         private readonly ICarAPIRepo _repository;
         private readonly IMapper _mapper;
+        private readonly ILogger<CarsController> _logger;
         
-        public CarsController(ICarAPIRepo repository, IMapper mapper)
+        public CarsController(ICarAPIRepo repository, IMapper mapper, ILogger<CarsController> logger)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<ReadCarDto>> GetAllCars([FromQuery] CarsParameters carsParameters) 
-        {        
+        {       
+            throw new Exception(); 
             var carItems = _repository.GetAllCars(carsParameters);
 
             if(carItems == null)
