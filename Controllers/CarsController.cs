@@ -30,7 +30,6 @@ namespace BMW_API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ReadCarDto>> GetAllCars([FromQuery] CarsParameters carsParameters) 
         {       
-            throw new Exception(); 
             var carItems = _repository.GetAllCars(carsParameters);
 
             if(carItems == null)
