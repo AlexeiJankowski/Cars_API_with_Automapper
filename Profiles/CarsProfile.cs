@@ -1,5 +1,6 @@
 using AutoMapper;
 using BMW_API.Dtos;
+using BMW_API.Models;
 
 namespace BMW_API.Profiles
 {
@@ -11,6 +12,9 @@ namespace BMW_API.Profiles
             CreateMap<CreateCarDto, Car>();
             CreateMap<UpdateCarDto, Car>();
             CreateMap<Car, UpdateCarDto>();
+            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<User, LoginUserDTO>().ReverseMap();
+            
         }
     }
 }

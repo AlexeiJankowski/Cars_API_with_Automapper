@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BMW_API.Data;
+using BMW_API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,7 +18,7 @@ namespace BMW_API
 {
     public class Startup
     {
-        IConfiguration Configuration {get;set;}
+        IConfiguration Configuration { get; set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,17 +31,22 @@ namespace BMW_API
             builder.ConnectionString = Configuration.GetConnectionString("PostgreSql");
             builder.Username = Configuration["UserId"];
             builder.Password = Configuration["Password"];
-            services.AddDbContext<AppDbContext>(options => 
+            services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseNpgsql(builder.ConnectionString);
             });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.ConfigureIdentity();
+            services.ConfigureJWT(Configuration);
+
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 });
             services.AddScoped<ICarAPIRepo, SqlCarAPIRepo>();
+            services.AddScoped<IAuthManager, AuthManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +59,9 @@ namespace BMW_API
             app.ConfigureExceptionHandler();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

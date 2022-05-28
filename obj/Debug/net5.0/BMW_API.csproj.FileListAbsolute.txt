@@ -123,3 +123,15 @@ C:/projects/Car_API_with_Automapper/obj/Debug/net5.0/ref/BMW_API.dll
 /home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Serilog.Sinks.Console.dll
 /home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Serilog.Sinks.Debug.dll
 /home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Serilog.Sinks.File.dll
+/home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Microsoft.Extensions.Identity.Core.dll
+/home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Microsoft.Extensions.Identity.Stores.dll
+/home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Microsoft.IdentityModel.Logging.dll
+/home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Microsoft.IdentityModel.Protocols.dll
+/home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/Microsoft.IdentityModel.Tokens.dll
+/home/oleksii/Projects/Cars_API_with_Automapper/bin/Debug/net5.0/System.IdentityModel.Tokens.Jwt.dll
