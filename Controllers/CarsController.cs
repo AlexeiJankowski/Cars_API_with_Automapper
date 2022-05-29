@@ -5,6 +5,7 @@ using AutoMapper;
 using BMW_API.Data;
 using BMW_API.Dtos;
 using BMW_API.Parameters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,7 @@ namespace BMW_API.Controllers
         }
 
         [HttpGet("{id}", Name = "GetCarById")]
+        [Authorize(Roles = "User, Administrator")]
         public ActionResult<ReadCarDto> GetCarById(int id) 
         {
             var carItem = _repository.GetCarById(id);
@@ -54,6 +56,7 @@ namespace BMW_API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public ActionResult<ReadCarDto> CreateCar(CreateCarDto createCarDto)
         {
                 var carItem = _mapper.Map<Car>(createCarDto);
@@ -66,6 +69,7 @@ namespace BMW_API.Controllers
         } 
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult UpdateCar(int id, UpdateCarDto updateCarDto)
         {
             var carItem = _repository.GetCarById(id);
@@ -82,6 +86,7 @@ namespace BMW_API.Controllers
         }
 
         [HttpPatch("{id}")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult PartiallyUpdaCar(int id, JsonPatchDocument<UpdateCarDto> patchCar)
         {
             var carItem = _repository.GetCarById(id);
@@ -114,6 +119,7 @@ namespace BMW_API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteCar(int id)
         { 
             var carItem = _repository.GetCarById(id);
