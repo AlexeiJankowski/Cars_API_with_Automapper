@@ -24,7 +24,7 @@ namespace BMW_API.Parameters
         }
 
         // OrderBy
-        public string OrderBy { get; set; } = "ModelSeries";
+        public string OrderBy { get; set; }
         public bool Desc { get; set; } = false;
 
         // Search
