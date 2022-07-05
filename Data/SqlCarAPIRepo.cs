@@ -38,7 +38,7 @@ namespace BMW_API.Data
 
             if (result.Count <= 0)
             {
-                return null;
+                return null; 
             }
 
             return result;
